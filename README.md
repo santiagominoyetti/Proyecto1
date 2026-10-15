@@ -63,6 +63,16 @@ registros horarios) con seis capas de contexto: peajes, precio de la nafta, tran
 > listadas en [`MEMORIA_datos.md`](MEMORIA_datos.md) §3. Con los extractos versionados alcanza
 > para regenerar el informe.
 
+### Datos (Drive)
+
+El dataset saneado que alimenta todo el pipeline de extractos está disponible en Drive:
+
+- **`flujo-vehicular-limpio.csv`** (~157 MB) → https://drive.google.com/file/d/1TQPrWjawV7rnMDBaJb87vC2unefO-Ryw/view?usp=sharing
+
+Basta descargarlo a la raíz del proyecto para correr el **camino completo** desde
+`storytelling.ipynb` en adelante. Los 7 CSV anuales crudos (paso 1–2) se obtienen de las fuentes
+públicas de [`MEMORIA_datos.md`](MEMORIA_datos.md) §3.
+
 ---
 
 ## Cómo regenerar el informe

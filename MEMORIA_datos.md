@@ -68,6 +68,11 @@ Siete archivos anuales (`flujo-vehicular-por-radares-2019…2025.csv`). Cada fil
 autopista, nombre del dispositivo, ubicación (km), sentido de circulación, latitud, longitud y
 cantidad.
 
+> **Dataset saneado en Drive.** El archivo `flujo-vehicular-limpio.csv` (~157 MB), resultado del
+> saneamiento (§5) y entrada de todos los extractos, está publicado en:
+> https://drive.google.com/file/d/1TQPrWjawV7rnMDBaJb87vC2unefO-Ryw/view?usp=sharing
+> Los 7 CSV anuales crudos no se publican; se obtienen de las fuentes públicas de origen.
+
 ### 3.2 Capas de contexto
 | Capa | Fuente | Granularidad original | Uso en el informe |
 |---|---|---|---|
