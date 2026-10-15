@@ -1,0 +1,36 @@
+# ───────────────────────────────────────────────────────────────────────────
+# Datos CRUDOS: demasiado grandes para GitHub (~2 GB en total).
+# NO se versionan. Sus fuentes públicas están documentadas en MEMORIA_datos.md §3.
+# El repo sí versiona los EXTRACTOS compactos (tableau_extracts/ y
+# contexto/procesado/), que bastan para reconstruir el informe.
+# ───────────────────────────────────────────────────────────────────────────
+
+# Flujo vehicular por radares (base)
+flujo-vehicular-por-radares-*.csv
+flujo-vehicular-unificado.csv
+flujo-vehicular-limpio.csv
+
+# Contexto crudo (~1,7 GB: nafta, SUBE, mobility, peajes, siniestros, feriados).
+# Se versiona únicamente contexto/procesado/
+contexto/*
+!contexto/procesado/
+!contexto/procesado/**
+
+# Informe generado: se reconstruye con `python construir_html.py`.
+# La copia PUBLICADA (GitHub Pages) es index.html, que sí se versiona.
+informe_flujo_vehicular.html
+
+# Python / Jupyter
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Config local de Claude Code / herramientas (no es parte del proyecto)
+.claude/
+
+# Sistema operativo / editores
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/

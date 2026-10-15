@@ -1,0 +1,11 @@
+# Proyecto 1 — Flujo vehicular de Buenos Aires (2019–2025)
+# Probado con Python 3.13. Instalar con:  pip install -r requirements.txt
+
+pandas
+numpy
+plotly          # gráficos del informe (construir_html.py, procesar_explorador.py)
+openpyxl        # lectura de .xlsx de siniestros (procesar_contexto.py)
+
+# Solo para el EDA en notebook (EDA_saneamiento.ipynb):
+matplotlib
+seaborn

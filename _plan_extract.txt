@@ -1,0 +1,117 @@
+Proyecto 1 — ITBA  ·  Entrega final
+Plan de Storytelling con Datos
+La Ciudad que cambió de ritmo: evolución del comportamiento del conductor porteño (2019–2026)
+Santiago Minoyetti  ·  Junio 2026  ·  Dataset base: flujo vehicular por radares (AUSA / GCBA)
+1. Objetivo y formato del entregable
+Esta entrega traduce el análisis histórico del flujo vehicular —construido a lo largo de TP1 a TP4— en una presentación tipo storytelling con datos, siguiendo el estilo del dashboard de referencia de la cátedra. La herramienta sugerida es Tableau, con un tablero secuencial (formato Story) que guía a la audiencia por un único argumento, en lugar de un panel de métricas inconexas.
+Audiencia: público general informado y docentes de la materia. El criterio de éxito no es la cantidad de gráficos, sino que el espectador se lleve una sola idea central y la recuerde.
+2. Tesis central (la idea única)
+Todo el relato sirve a una sola afirmación, que se enuncia al inicio y se demuestra escena por escena:
+“La pandemia no solo vació las autopistas: reconfiguró de forma permanente cuándo se mueve la Ciudad. El tránsito volvió en volumen, pero perdió su forma rígida —y dejó al conductor porteño mucho más sensible al contexto económico (nafta, tarifas) de lo que era antes.”
+Regla de edición: cada dataset de contexto entra solo si refuerza esta tesis. Lo que no la sostiene queda afuera o pasa a un apéndice. Esto evita el riesgo principal de la idea original: que el relato degenere en un “tour” de datasets curiosos sin columna vertebral.
+3. Decisión metodológica clave: comparar peras con peras
+La cantidad de radares y autopistas publicados cambia año a año (4 autopistas en 2019; 10 en 2025, con el alta de AU 25 de Mayo, Illia y Perito Moreno). Por eso los totales absolutos NO son comparables entre años: más vehículos puede significar simplemente más sensores. Para un relato histórico honesto, la métrica protagonista debe normalizarse.
+Panel estable de radares. Trabajar sobre el subconjunto de radares/autopistas presentes en todos los años (núcleo: AU 4 Lugones, AU 5 Cantilo, AU 9 de Julio Sur, AU Dellepiane). Es la columna comparable 2019–2026.
+Métrica relativa. Usar vehículos promedio por radar-hora, no la suma cruda, para neutralizar el alta/baja de sensores.
+Índice base 2019 = 100. Reexpresar flujo, nafta, SUBE y movilidad en índices base 100 para que todas las series dialoguen en un mismo eje. Sin esto el storytelling se rompe por escalas incompatibles.
+Toda la preparación, en notebook. La construcción del panel estable, la normalización y los índices se documentan en un .ipynb reproducible (continuidad del pipeline de TP3); de ahí se exportan los extractos que consume Tableau.
+4. Arco narrativo (5 actos)
+El relato sigue una estructura clásica de tensión y resolución: ritmo normal → shock → recuperación incompleta → fuerzas que lo explican → cierre contraintuitivo.
+Acto 1  ·  El pulso normal
+Set-up — 2018/2019. Presentar al protagonista en su rutina para que el golpe del Acto 2 se sienta.
+Pregunta que responde
+Datos (base + contexto)
+Visual sugerida en Tableau
+¿Cómo latía la Ciudad antes de la pandemia?
+Base 2019: flujo por hora y día de semana (panel estable).
+Heatmap hora × día; serie diaria con las dos jorobas de hora pico.
+¿Quiénes son los corredores principales?
+Ranking de autopistas (Lugones, Dellepiane y 9 de Julio Sur ≈ 68% del flujo — TP2).
+Barras horizontales ordenadas; mapa de radares por lat/long.
+Acto 2  ·  El shock
+Incidente disparador — 2020. El derrumbe del ASPO; el momento más dramático del relato.
+Pregunta que responde
+Datos (base + contexto)
+Visual sugerida en Tableau
+¿Cuánto y por cuánto tiempo se vació la Ciudad?
+Caída del 71,5% en abril 2020 vs. 2019 (TP2), superpuesta a Google Mobility (workplaces / transit).
+Serie temporal con la caída anotada; doble línea flujo vs. movilidad.
+Acto 3  ·  La recuperación incompleta y el “nuevo normal”
+Clímax argumental — 2021/2022. La pregunta no es “¿volvió?” sino “¿volvió igual?”.
+Pregunta que responde
+Datos (base + contexto)
+Visual sugerida en Tableau
+¿El volumen recuperó su nivel previo?
+Índice base 2019=100 del panel estable, 2019→2024.
+Línea con banda de referencia en 100; anotar el año en que recupera.
+¿Cambió la FORMA de la semana y del día?
+Perfil horario y semanal pre vs. post; capa de trabajo remoto (Mobility workplaces / EPH-INDEC).
+Small multiples del perfil semanal por año; resaltar lunes/viernes (semana híbrida) y el pico aplanado.
+Acto 4  ·  Las fuerzas que tiran del volante
+Desarrollo — 2022/2025. Demostrar que el conductor hoy responde al contexto económico.
+Pregunta que responde
+Datos (base + contexto)
+Visual sugerida en Tableau
+¿La nafta frena el tránsito? ¿Más que antes?
+Precio de nafta (Res. 314) vs. flujo, en índices; comparar elasticidad pre/post pandemia.
+Doble eje o scatter flujo vs. precio coloreado por período.
+¿La gente sustituye el auto por el transporte público?
+Transacciones SUBE vs. flujo vehicular ante saltos tarifarios.
+Series superpuestas con anotaciones en aumentos de tarifa.
+¿Feriados y findes largos siguen patrones predecibles?
+Calendario de feriados como control de calidad del dato.
+Marcadores de feriado sobre la serie; éxodo previo / valle durante.
+Mundial 2022: ¿la Ciudad contuvo el aliento?
+Nov–Dic 2022 (presente en el histórico) + fechas/horarios de los 7 partidos de Argentina.
+Zoom horario de los días de partido: calles vacías durante el juego, pico al terminar.
+Nota de datos: noviembre y diciembre 2022 SÍ están en el histórico (los meses ausentes de 2022 son marzo a septiembre). Conviene confirmar la cobertura por radar antes de comprometer esta escena.
+Acto 5  ·  El cierre: ¿cambiaron de verdad los hábitos?
+Resolución — vuelta a la tesis con un giro contraintuitivo.
+Pregunta que responde
+Datos (base + contexto)
+Visual sugerida en Tableau
+¿Qué cambió de forma permanente?
+Síntesis: forma de la semana (híbrida), pico aplanado, mayor sensibilidad económica.
+Slide de síntesis con 3 indicadores “antes vs. ahora”.
+Giro final: ¿menos autos significó menos víctimas?
+Siniestros viales (OMSV) vs. flujo: ¿calles más vacías → más velocidad y riesgo por viaje?
+Línea de víctimas vs. flujo normalizado; resaltar si el riesgo por vehículo sube cuando el volumen baja.
+5. Datasets de contexto y fuentes
+Todas las fuentes son de acceso abierto y cubren el período 2019–2024/26. La base ya está procesada; el resto se incorpora como capas.
+Dataset / fuente
+Cobertura
+Uso narrativo y enlace
+Flujo vehicular por radares (AUSA / GCBA) — BASE
+2019–2026, horario por radar
+Protagonista. Ya normalizado (TP3) y en Postgres (TP4). BA Data
+Google COVID-19 Community Mobility Reports
+Feb 2020 – Oct 2022, diario, AR/CABA
+Valida caída y recuperación (workplaces, transit, residential). google.com/covid19/mobility
+Precios en surtidor — Res. 314/2016 (Sec. Energía)
+2016–actualidad, por estación
+Nafta. Precio promedio CABA vs. flujo. datos.gob.ar
+SUBE — transacciones (usos) por fecha (Min. Transporte)
+2020–2026, diario, AMBA
+Transporte público. Sustitución auto vs. colectivo/subte. datos.transporte.gob.ar
+Víctimas en siniestros viales (OMSV — GCBA)
+2019–2024, por hecho
+Cierre / giro final. ¿Menos tránsito = menos víctimas? BA Data
+Feriados nacionales argentinos
+2019–2026, calendario
+Control y findes largos. API pública argentinadatos.com
+Calendario Mundial Qatar 2022 (partidos de Argentina)
+22-nov a 18-dic 2022
+Anomalías de comportamiento. Fechas/horarios de los 7 partidos de Argentina como anotaciones sobre la serie.
+6. Limitaciones y datos faltantes a respetar
+Heredados del inventario de TP3 y del pedido de acceso a la información (Ley 104), deben quedar visibles en el relato para sostener el rigor:
+2022 incompleto: faltan ~marzo a septiembre; usar solo los tramos publicados y declararlo.
+Cobertura intra-anual: varios años cierran cerca del 9/9; comparar siempre ventanas equivalentes (mismo rango de meses).
+Alta/baja de radares: no hay maestro oficial de dispositivos; el panel estable mitiga el sesgo de sensores nuevos.
+Coordenadas 2021 rotas en origen: ya corregidas en el pipeline de TP3, pero conviene notarlo si se usa el mapa.
+Sin velocidad ni tipo de vehículo: el dataset no publica p85 ni livianos/pesados; el relato del riesgo (Acto 5) se apoya en siniestros, no en velocidad medida.
+7. Próximos pasos sugeridos
+1. Notebook de preparación: construir panel estable, normalizar e indexar (base 2019=100) y exportar extractos para Tableau.
+2. Descargar e indexar las capas de contexto (nafta, SUBE, Mobility, siniestros, feriados).
+3. Maquetar la Story en Tableau con un tablero por acto y anotaciones (caída COVID, partidos del Mundial, saltos de tarifa).
+4. Validación: contrastar los hitos del relato con los caveats del punto 6 antes de presentar.
+Sugerencia de impacto: si hay que recortar, los Actos 1–3 son el núcleo irrenunciable; nafta y Mundial son los “ganchos” más memorables del Acto 4; el giro de siniestros es el mejor cierre.
